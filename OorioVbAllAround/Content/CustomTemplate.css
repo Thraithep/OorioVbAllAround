@@ -104,7 +104,17 @@
 .img-fluid{
     width:100%;
     height: auto;
-} 
+}
+@media (min-width: 992px) {
+
+    .col-md-4 {
+        width: 32.333333%;
+        margin: 5px;
+        border: 1px solid #999999;
+        border-radius: 6px;
+    }
+
+}
 
 a:hover,
 a:focus {

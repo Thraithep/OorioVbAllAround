@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="OorioVbAllAroundModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Content">
+          <Key>
+            <PropertyRef Name="ObjectID" />
+          </Key>
+          <Property Name="ObjectID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="text" />
+          <Property Name="ContentType_OID" Type="int" Nullable="false" />
+          <Property Name="CreateBy" Type="varchar" MaxLength="50" />
+          <Property Name="CreateDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ContentType">
+          <Key>
+            <PropertyRef Name="ObjectID" />
+          </Key>
+          <Property Name="ObjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Content_ContentType">
+          <End Role="ContentType" Type="Self.ContentType" Multiplicity="1" />
+          <End Role="Content" Type="Self.Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContentType">
+              <PropertyRef Name="ObjectID" />
+            </Principal>
+            <Dependent Role="Content">
+              <PropertyRef Name="ContentType_OID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OorioVbAllAroundModelStoreContainer">
+          <EntitySet Name="Content" EntityType="Self.Content" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContentType" EntityType="Self.ContentType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Content_ContentType" Association="Self.FK_Content_ContentType">
+            <End Role="ContentType" EntitySet="ContentType" />
+            <End Role="Content" EntitySet="Content" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OorioVbAllAroundModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Content">
+          <Key>
+            <PropertyRef Name="ObjectID" />
+          </Key>
+          <Property Name="ObjectID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ContentType_OID" Type="Int32" Nullable="false" />
+          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="ContentType" Relationship="Self.FK_Content_ContentType" FromRole="Content" ToRole="ContentType" />
+        </EntityType>
+        <EntityType Name="ContentType">
+          <Key>
+            <PropertyRef Name="ObjectID" />
+          </Key>
+          <Property Name="ObjectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Contents" Relationship="Self.FK_Content_ContentType" FromRole="ContentType" ToRole="Content" />
+        </EntityType>
+        <Association Name="FK_Content_ContentType">
+          <End Role="ContentType" Type="Self.ContentType" Multiplicity="1" />
+          <End Role="Content" Type="Self.Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContentType">
+              <PropertyRef Name="ObjectID" />
+            </Principal>
+            <Dependent Role="Content">
+              <PropertyRef Name="ContentType_OID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OorioVbAllAroundEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Contents" EntityType="Self.Content" />
+          <EntitySet Name="ContentTypes" EntityType="Self.ContentType" />
+          <AssociationSet Name="FK_Content_ContentType" Association="Self.FK_Content_ContentType">
+            <End Role="ContentType" EntitySet="ContentTypes" />
+            <End Role="Content" EntitySet="Contents" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OorioVbAllAroundModelStoreContainer" CdmEntityContainer="OorioVbAllAroundEntities">
+          <EntitySetMapping Name="Contents">
+            <EntityTypeMapping TypeName="OorioVbAllAroundModel.Content">
+              <MappingFragment StoreEntitySet="Content">
+                <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ContentType_OID" ColumnName="ContentType_OID" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContentTypes">
+            <EntityTypeMapping TypeName="OorioVbAllAroundModel.ContentType">
+              <MappingFragment StoreEntitySet="ContentType">
+                <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
