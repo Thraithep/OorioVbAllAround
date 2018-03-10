@@ -6,19 +6,13 @@ using System.Web.Mvc;
 
 namespace OorioVbAllAround.Controllers
 {
-    public class HomeController : Controller
+    public class BeautyController : Controller
     {
+        // GET: Beauty
         public ActionResult Index()
         {
+            ViewBag.Message = "Your Beauty page.";
             return View();
         }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
     }
 }

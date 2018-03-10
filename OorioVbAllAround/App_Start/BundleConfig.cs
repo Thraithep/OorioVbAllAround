@@ -27,6 +27,10 @@ namespace OorioVbAllAround
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/CustomTemplate.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                "~/Scripts/Shared/layout.js"
+                ));
         }
     }
 }
