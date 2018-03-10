@@ -12,23 +12,16 @@ namespace ORM
     using System;
     using System.Collections.Generic;
     
-    public partial class Content
+    public partial class Image
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Content()
-        {
-            this.Images = new HashSet<Image>();
-        }
-    
         public int ObjectID { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public int ContentType_OID { get; set; }
+        public string FileName { get; set; }
+        public string FilePath { get; set; }
+        public bool IsThumbnail { get; set; }
         public string CreateBy { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int Content_OID { get; set; }
     
-        public virtual ContentType ContentType { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Image> Images { get; set; }
+        public virtual Content Content { get; set; }
     }
 }

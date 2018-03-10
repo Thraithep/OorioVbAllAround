@@ -27,5 +27,6 @@ namespace ORM
     
         public virtual DbSet<Content> Contents { get; set; }
         public virtual DbSet<ContentType> ContentTypes { get; set; }
+        public virtual DbSet<Image> Images { get; set; }
     }
 }
