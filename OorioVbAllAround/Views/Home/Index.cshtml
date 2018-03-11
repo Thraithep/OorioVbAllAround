@@ -16,7 +16,12 @@
                     <p>
                         @content.Description
                     </p>
-                    <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+                    <p>@Html.ActionLink(linkText: "Read more",
+                      actionName: "TravelDetail",
+                      controllerName: "Travel",
+                      routeValues: new { ObjectID = content.ObjectID },
+                      htmlAttributes: null)
+                    </p>
                 </div>
             }
             else
@@ -26,7 +31,13 @@
                     <p>
                         @content.Description
                     </p>
-                    <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+                    <p>
+                        @Html.ActionLink(linkText: "Read more",
+                      actionName: "TravelDetail",
+                      controllerName: "Travel",
+                      routeValues: new { ObjectID = content.ObjectID },
+                      htmlAttributes: null)
+                    </p>
                 </div>
             }
         }

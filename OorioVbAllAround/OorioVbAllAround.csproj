@@ -193,6 +193,7 @@
     <Content Include="Views\Travel\Index.cshtml" />
     <Content Include="Views\LifeStyle\Index.cshtml" />
     <Content Include="Views\Beauty\Index.cshtml" />
+    <Content Include="Views\Travel\TravelDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

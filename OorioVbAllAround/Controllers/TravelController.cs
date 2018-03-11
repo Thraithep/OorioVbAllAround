@@ -14,5 +14,11 @@ namespace OorioVbAllAround.Controllers
             ViewBag.Message = "Your Travel page.";
             return View();
         }
+
+        public ActionResult TravelDetail(int ObjectID)
+        {
+            ViewBag.Message = "Travel detail is " + ObjectID;
+            return View();
+        }
     }
 }
