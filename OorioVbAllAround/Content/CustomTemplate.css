@@ -117,3 +117,12 @@ a:focus {
     outline: 5px auto -webkit-focus-ring-color;
     outline-offset: -2px;
 }
+
+.home-content {
+    padding: 5px;
+    overflow: hidden;
+}
+
+.home-content > div.text-center > img {
+    height: 170px;
+}

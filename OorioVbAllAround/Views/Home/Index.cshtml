@@ -11,7 +11,10 @@
             var content = ViewBag.Contents[i];
             if (i % 3 == 0)
             {
-                <div class="col-md-4 clearfix">
+                <div class="col-md-4 clearfix home-content">
+                    <div class="text-center">
+                        <img src="~/Images/TopBanner-2.png"/>
+                    </div>
                     <h2>@content.Title</h2>
                     <p>
                         @content.Description
@@ -26,7 +29,10 @@
             }
             else
             {
-                <div class="col-md-4 ">
+                <div class="col-md-4 home-content">
+                    <div class="text-center">
+                        <img src="~/Images/TopBanner-2.png" />
+                    </div>
                     <h2>@content.Title</h2>
                     <p>
                         @content.Description
